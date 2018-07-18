@@ -16,13 +16,18 @@
           </thead>
 
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>USZ-53D</td>
-              <td>Motorbike</td>
-              <td>2018-07-17 <b>18:55:06</b></td>
-              <td><button class="btn btn-info btn-sm" style="font-size:20px;"><i class="fa fa-arrow-right"></i></button></td>
-            </tr>
+
+            <ul>
+              <li *ngFor="let hero of vehiclesInParking">
+                {{ hero }}
+              </li>
+            </ul>
+            <!-- <tr *ngFor="let parking of vehiclesInParking">
+                <td>{{ parking.vehicle.plate }}</td>
+                <td>{{ parking.vehicle.vehicleType }}</td>
+                <td>{{ parking.inDate }}</td>
+                <td><button class="btn btn-info btn-sm" style="font-size:20px;"><i class="fa fa-arrow-right"></i></button></td>
+            </tr> -->
           </tbody>
         </table>
     </div>
