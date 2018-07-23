@@ -1,10 +1,10 @@
-// import { VehicleEntity } from './vehicleEntity';
+import { VehicleEntity } from './vehicleEntity';
 
 export class ParkingEntity {
     idParking: number;
-    inDate: string;
-    outDate: string;
+    inDate: Date;
+    outDate: Date;
     status:boolean;
     payment: number;
-    // vechicle: VehicleEntity;
+    vechicle: VehicleEntity;
 }

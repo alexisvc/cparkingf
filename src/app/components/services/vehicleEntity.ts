@@ -1,6 +1,7 @@
+import { VehicleType } from './vehicleTypeEntity';
+
 export class VehicleEntity {
-    idVehicle:number;
-    plate:string;
-    displacement:number;
-    vehicleType:string;
+    plate: string;
+    displacement: number;
+    vehicleType: string;
 }

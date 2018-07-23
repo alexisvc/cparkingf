@@ -7,6 +7,12 @@ import { RegisterVehicleComponent } from './components/register-vehicle/register
 import { ParkingComponent } from './components/parking/parking.component';
 import { ParkingService } from './components/services/parking.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes} from '@angular/router';
+
+const routes: Routes = [
+  {path: 'home', component: RegisterVehicleComponent}
+];
 
 @NgModule({
   declarations: [
@@ -17,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [ParkingService],
   bootstrap: [AppComponent]
