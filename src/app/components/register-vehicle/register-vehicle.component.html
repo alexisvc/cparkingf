@@ -9,7 +9,7 @@
         <label for="inputPlate">Plate</label>
         <input type="text" [(ngModel)]="vehicle.plate" [ngModelOptions]="{standalone: true}" class="form-control form-control-lg" id="inputPlate" placeholder="Enter plate">
       </div>
-            
+
       <div class="form-group">
           <label for="selectVehicleType">Vehicle type</label>  
           <select [(ngModel)]="vehicle.vehicleType" [ngModelOptions]="{standalone: true}" class="form-control form-control-lg" id="selectVehicleType" >
@@ -21,7 +21,7 @@
 
       <div class="form-group">
         <label for="selectDisplacement">Displacement</label>
-        <select [disabled]="true" [(ngModel)]="vehicle.displacement" [ngModelOptions]="{standalone: true}" class="form-control form-control-lg" id="selectDisplacement" >
+        <select [(ngModel)]="vehicle.displacement" [ngModelOptions]="{standalone: true}" class="form-control form-control-lg" id="selectDisplacement" >
             <optgroup label="Select displacement">
                 <option *ngFor = "let displacement of listDisplacement"> {{ displacement.value }} </option>
             </optgroup>

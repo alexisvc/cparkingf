@@ -1,10 +1,12 @@
+import { error } from 'protractor';
 import { ParkingService } from './../services/parking.service';
 import { VehicleEntity } from './../services/vehicleEntity';
 import { VEHICLE_TYPE, DISPLACEMENT } from './../services/arrayToLoadComponents.json';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { VehicleType } from '../services/vehicleTypeEntity';
 import {Router, ActivatedRoute} from '@angular/router';
 import swal from 'sweetalert2';
+import { errorHandler } from '@angular/platform-browser/src/browser';
 
 @Component({
   selector: 'app-register-vehicle',
@@ -17,10 +19,7 @@ export class RegisterVehicleComponent implements OnInit {
   private listVehicleType: VehicleType[];
   private vehicle: VehicleEntity = new VehicleEntity();
 
-  constructor(private parkingService: ParkingService, 
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-  ) {}
+  constructor(private parkingService: ParkingService) {}
 
   ngOnInit() {    
     this.listVehicleType = VEHICLE_TYPE;
@@ -28,11 +27,25 @@ export class RegisterVehicleComponent implements OnInit {
   }
 
   createParking(): void {
-    this.parkingService.registerEntryVehicle(this.vehicle)
-      .subscribe(vehicle => {
+    this.parkingService.registerEntryVehicle(this.vehicle)      
+    .subscribe(
+      vehicle => {
         this.vehicle = vehicle
-        swal('New vehicle', `Vehicle with plate: ${vehicle.plate} was parked!`, 'success')
-      }
+        swal({
+          title: 'Entering vehicle', 
+          html: `Vehicle with plate: <b> ${vehicle.plate} </b>was parked! `,
+          type: 'success'
+        })
+      }, 
+      
+      backError => {
+        console.log(backError.error)
+        swal({
+          title: 'Oops...',
+          html: `${backError.error}`,
+          type: 'error'
+        })
+      }          
     )
   }
 }

@@ -25,7 +25,7 @@ export class ParkingComponent implements OnInit {
         this.vehiclesInParking = vehiclesInParking ;
       },
       error => {
-        console.log();
+        console.log(error.error);
       }
     );
   }
@@ -45,8 +45,23 @@ export class ParkingComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.parkingService.giveOutVehicle(selectedVehicle.plate)
-        .subscribe( parking => { this.parking = parking
-            swal('Vehicle has left', `The value to pay: ${parking.payment}`, 'success')
+        .subscribe( 
+          parking => { 
+            this.parking = parking
+            swal({
+              title: 'Vehicle has left', 
+              html: `The value to pay: <b> ${parking.payment} </b>`,
+              type: 'success'
+            })
+          },
+          
+          backError => {
+            console.log(backError.error)
+            swal({
+              title: 'Oops...',
+              html: `${backError.error}`,
+              type: 'error'
+            })
           }
         )
       }
