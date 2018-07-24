@@ -15,13 +15,17 @@ export class ParkingService {
   
   constructor(private http: HttpClient){}
   
+  registerEntryVehicle(vehicle: VehicleEntity): Observable<VehicleEntity> {
+    return this.http.post<VehicleEntity>(this.urlEndPointSave, vehicle, {headers: this.httpHeaders});
+  }
+
+  giveOutVehicle(plate: String): Observable<ParkingEntity>{
+    return this.http.put<ParkingEntity>(this.urlEndPointGiveOut + plate, plate,{headers: this.httpHeaders});
+  }
+  
   getAllParking(): Observable<ParkingEntity[]> {
     return this.http.get(this.urlEndPointFindAll).pipe(
       map(response => response as ParkingEntity[]),
     );
-  }
-
-  registerEntryVehicle(vehicle: VehicleEntity): Observable<VehicleEntity> {
-    return this.http.post<VehicleEntity>(this.urlEndPointSave, vehicle, {headers: this.httpHeaders});
   }
 }
